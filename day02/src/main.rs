@@ -28,24 +28,14 @@ pub fn main() -> io::Result<()> {
 }
 
 fn part_a(nums: &Vec<Vec<u32>>) -> u32 {
-    let mut diffs: Vec<u32> = vec![];
-
-    for row in nums {
-        let mut min = 10000;
-        let mut max = 0;
-
-        for num in row.iter() {
-            if num < &min {
-                min = *num;
-            }
-            if num > &max {
-                max = *num;
-            }
-        }
-        let d = max - min;
-        diffs.push(d);
-    }
-    diffs.into_iter().sum()
+    nums.iter()
+        .map(|num| {
+            let max = num.iter().max().unwrap();
+            let min = num.iter().min().unwrap();
+            max - min
+        })
+        .into_iter()
+        .sum()
 }
 
 fn part_b(nums: &Vec<Vec<u32>>) -> u32 {
