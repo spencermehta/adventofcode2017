@@ -12,7 +12,7 @@ pub fn main() -> io::Result<()> {
     // println!("{:?}", nums);
 
     let ans_a = part_a(nums.clone());
-    let ans_b = part_b(nums.clone());
+    let ans_b = part_b(nums);
 
     println!("{}\n{}", ans_a, ans_b);
 
@@ -27,7 +27,6 @@ fn part_a(mut message: Vec<isize>) -> isize {
         let jump = message[position as usize];
         depth += 1;
         message[position as usize] += 1;
-        // println!("{}, {}", jump, position);
         position += jump;
     }
 
@@ -46,7 +45,6 @@ fn part_b(mut message: Vec<isize>) -> isize {
         } else {
             message[position as usize] += 1;
         }
-        // println!("{}, {}", jump, position);
         position += jump;
     }
 
@@ -56,9 +54,15 @@ fn part_b(mut message: Vec<isize>) -> isize {
 #[cfg(test)]
 mod tests {
     use crate::part_a;
+    use crate::part_b;
 
     #[test]
     fn test_one() {
         assert_eq!(part_a(vec![0, 3, 0, 1, -3]), 5)
+    }
+
+    #[test]
+    fn test_two() {
+        assert_eq!(part_b(vec![0, 3, 0, 1, -3]), 10)
     }
 }
